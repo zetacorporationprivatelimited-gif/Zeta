@@ -15,7 +15,6 @@ st.markdown("""
     }
     </style>
     """, unsafe_allow_html=True)
-
 with open("index.html", "r", encoding="utf-8") as f:
     html_code = f.read()
     # height=2500 ensures the full page is captured without a second scrollbar
