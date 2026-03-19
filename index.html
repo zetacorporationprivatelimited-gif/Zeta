@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zeta Corporation Pvt. Ltd. — Building the Next Generation of Global Leaders</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0A2240;
+  --navy-mid: #1B3A6B;
+  --navy-light: #2B5299;
+  --white: #FFFFFF;
+  --off-white: #F8F8F8;
+  --light-grey: #F0F0F0;
+  --mid-grey: #888888;
+  --text-dark: #1A1A1A;
+  --text-mid: #444444;
+  --accent: #1B3A6B;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:'Cormorant Garamond',Georgia,serif; background:var(--white); color:var(--text-dark); overflow-x:hidden; }
+
+/* Global image sizing – prevent overflow and maintain aspect ratio */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* NAV */
+nav { position:fixed; top:0; left:0; right:0; z-index:1000; background:var(--white); border-bottom:1px solid rgba(10,34,64,0.12); padding:0 60px; height:68px; display:flex; align-items:center; justify-content:space-between; transition:box-shadow 0.3s; }
+nav.scrolled { box-shadow:0 2px 20px rgba(10,34,64,0.1); }
+.nav-logo img { height:38px; width:auto; object-fit:contain; }
+.nav-links { display:flex; gap:36px; list-style:none; }
+.nav-links a { font-family:'Josefin Sans',sans-serif; font-size:10px; font-weight:600; letter-spacing:2.5px; text-transform:uppercase; color:var(--navy); text-decoration:none; padding-bottom:2px; border-bottom:1px solid transparent; transition:all 0.3s; }
+.nav-links a:hover { color:var(--navy-mid); border-bottom-color:var(--navy-mid); }
+
+/* HERO */
+#hero { position:relative; height:100vh; min-height:700px; background:var(--navy); display:flex; align-items:flex-end; padding-bottom:80px; overflow:hidden; }
+.hero-canvas { position:absolute; top:0; left:0; width:100%; height:100%; opacity:0.05; }
+.math-symbols { position:absolute; top:0; left:0; width:100%; height:100%; overflow:hidden; pointer-events:none; }
+.math-sym { position:absolute; color:rgba(255,255,255,0.08); font-family:'Playfair Display',serif; animation:floatUp linear infinite; pointer-events:none; user-select:none; }
+@keyframes floatUp { 0%{transform:translateY(100vh) rotate(0deg);opacity:0;} 10%{opacity:1;} 90%{opacity:1;} 100%{transform:translateY(-100px) rotate(360deg);opacity:0;} }
+.hero-content { position:relative; z-index:10; padding:0 60px; max-width:900px; }
+.hero-line { width:50px; height:1px; background:rgba(255,255,255,0.5); margin-bottom:28px; transform:scaleX(0); transform-origin:left; animation:expandLine 0.8s ease 0.3s forwards; }
+@keyframes expandLine { to{transform:scaleX(1);} }
+.hero-h1 { font-family:'Playfair Display',serif; font-size:clamp(34px,5vw,66px); font-weight:700; color:var(--white); line-height:1.15; margin-bottom:20px; opacity:0; transform:translateX(-40px); animation:slideLeft 1s ease 0.6s forwards; }
+@keyframes slideLeft { to{opacity:1;transform:translateX(0);} }
+.hero-sub { font-family:'Cormorant Garamond',serif; font-size:clamp(17px,2vw,22px); font-weight:300; color:rgba(255,255,255,0.65); font-style:italic; margin-bottom:44px; opacity:0; transform:translateX(-40px); animation:slideLeft 1s ease 1s forwards; }
+.hero-btns { display:flex; gap:18px; opacity:0; transform:translateX(-40px); animation:slideLeft 1s ease 1.3s forwards; }
+.btn-p { font-family:'Josefin Sans',sans-serif; font-size:10px; font-weight:600; letter-spacing:2px; text-transform:uppercase; padding:13px 32px; background:var(--navy-mid); color:var(--white); border:1px solid rgba(255,255,255,0.3); text-decoration:none; cursor:pointer; transition:all 0.3s; }
+.btn-p:hover { background:var(--white); color:var(--navy); }
+.btn-s { font-family:'Josefin Sans',sans-serif; font-size:10px; font-weight:600; letter-spacing:2px; text-transform:uppercase; padding:13px 32px; background:transparent; color:var(--white); border:1px solid rgba(255,255,255,0.35); text-decoration:none; cursor:pointer; transition:all 0.3s; }
+.btn-s:hover { border-color:var(--white); }
+
+/* SECTION UTILITIES */
+.section-label { font-family:'Josefin Sans',sans-serif; font-size:9px; font-weight:600; letter-spacing:4px; text-transform:uppercase; color:var(--navy-mid); display:block; margin-bottom:16px; }
+.section-label.light { color:rgba(255,255,255,0.5); }
+.fade-up { opacity:0; transform:translateY(36px); transition:all 0.9s cubic-bezier(0.16,1,0.3,1); }
+.fade-up.visible { opacity:1; transform:translateY(0); }
+.fade-left { opacity:0; transform:translateX(-36px); transition:all 0.9s cubic-bezier(0.16,1,0.3,1); }
+.fade-left.visible { opacity:1; transform:translateX(0); }
+
+/* IMPACT */
+#impact { background:var(--off-white); padding:80px 60px; border-bottom:1px solid rgba(10,34,64,0.08); }
+.impact-inner { max-width:1100px; margin:0 auto; }
+.impact-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:0; margin-bottom:44px; }
+.impact-item { padding:36px 40px; border-right:1px solid rgba(10,34,64,0.12); opacity:0; transform:translateY(24px); transition:all 0.8s ease; }
+.impact-item:last-child { border-right:none; }
+.impact-item.visible { opacity:1; transform:translateY(0); }
+.impact-num { font-family:'Playfair Display',serif; font-size:clamp(44px,5.5vw,72px); font-weight:400; color:var(--navy); line-height:1; margin-bottom:10px; }
+.impact-lbl { font-family:'Josefin Sans',sans-serif; font-size:10px; font-weight:400; letter-spacing:2px; text-transform:uppercase; color:var(--mid-grey); }
+.impact-network { border-top:1px solid rgba(10,34,64,0.12); padding-top:36px; text-align:center; }
+.impact-network p { font-family:'Cormorant Garamond',serif; font-size:17px; font-weight:300; font-style:italic; color:var(--text-mid); max-width:780px; margin:0 auto 12px; line-height:1.7; }
+.impact-countries { font-family:'Josefin Sans',sans-serif; font-size:9px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:var(--navy-mid); }
+
+/* WHO WE ARE */
+#who { padding:96px 60px; background:var(--white); }
+.who-inner { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; }
+.who-h2 { font-family:'Playfair Display',serif; font-size:clamp(28px,3.5vw,48px); font-weight:700; color:var(--navy); line-height:1.2; margin-bottom:28px; }
+.who-h2 em { font-style:italic; color:var(--navy-mid); }
+.who-body p { font-family:'Cormorant Garamond',serif; font-size:18px; color:var(--text-mid); line-height:1.8; margin-bottom:24px; }
+.vm-grid { display:grid; grid-template-columns:1fr 1fr; gap:2px; background:rgba(10,34,64,0.08); margin-top:16px; }
+.vm-card { background:var(--white); padding:32px; border-top:2px solid var(--navy); }
+.vm-card h3 { font-family:'Josefin Sans',sans-serif; font-size:9px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:var(--navy-mid); margin-bottom:14px; }
+.vm-card p { font-family:'Cormorant Garamond',serif; font-size:16px; color:var(--text-mid); line-height:1.7; }
+
+/* DIVISIONS */
+#divisions { padding:96px 60px; background:var(--off-white); }
+.sec-inner { max-width:1100px; margin:0 auto; }
+.sec-header { margin-bottom:52px; }
+.sec-h2 { font-family:'Playfair Display',serif; font-size:clamp(26px,3.5vw,46px); font-weight:700; color:var(--navy); }
+.div-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:2px; background:rgba(10,34,64,0.08); }
+.div-card { background:var(--white); padding:44px; border-left:3px solid transparent; transition:all 0.3s; opacity:0; transform:translateY(28px); }
+.div-card.visible { opacity:1; transform:translateY(0); }
+.div-card:hover { border-left-color:var(--navy); background:var(--off-white); }
+.div-logo { height:70px; width:auto; max-width:180px; object-fit:contain; margin-bottom:20px; transition:all 0.3s; }
+.div-name { font-family:'Playfair Display',serif; font-size:20px; font-weight:600; color:var(--navy); margin-bottom:10px; }
+.div-desc { font-family:'Cormorant Garamond',serif; font-size:16px; color:var(--text-mid); line-height:1.7; }
+
+/* COLLEGE GUIDE */
+#college { background:var(--white); padding:96px 60px; }
+.col-header { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:end; margin-bottom:52px; }
+.col-h2 { font-family:'Playfair Display',serif; font-size:clamp(24px,3vw,42px); font-weight:700; color:var(--navy); line-height:1.2; }
+.col-h2 em { font-style:italic; color:var(--navy-mid); }
+.col-body { font-family:'Cormorant Garamond',serif; font-size:17px; color:var(--text-mid); line-height:1.7; }
+.col-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:rgba(10,34,64,0.08); margin-bottom:28px; }
+.col-item { background:var(--off-white); padding:28px; font-family:'Cormorant Garamond',serif; font-size:16px; color:var(--text-mid); border-bottom:2px solid transparent; transition:all 0.3s; opacity:0; transform:translateY(20px); }
+.col-item.visible { opacity:1; transform:translateY(0); }
+.col-item:hover { border-bottom-color:var(--navy); background:var(--white); }
+.col-contact { font-family:'Josefin Sans',sans-serif; font-size:10px; letter-spacing:1.5px; color:var(--mid-grey); }
+.col-contact a { color:var(--navy-mid); text-decoration:none; transition:color 0.3s; }
+.col-contact a:hover { color:var(--navy); }
+
+/* PROJECTS */
+#projects { padding:96px 60px; background:var(--off-white); }
+.proj-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:rgba(10,34,64,0.08); }
+.proj-card { background:var(--white); padding:36px; transition:all 0.3s; opacity:0; transform:translateY(28px); }
+.proj-card.visible { opacity:1; transform:translateY(0); }
+.proj-card:hover { background:var(--off-white); }
+.proj-name { font-family:'Playfair Display',serif; font-size:19px; font-weight:600; color:var(--navy); margin-bottom:10px; }
+.proj-badge { display:inline-block; font-family:'Josefin Sans',sans-serif; font-size:8px; font-weight:600; letter-spacing:2px; text-transform:uppercase; padding:3px 10px; background:var(--navy); color:var(--white); margin-bottom:14px; }
+.proj-badge.conf { background:#7A1A1A; }
+.proj-desc { font-family:'Cormorant Garamond',serif; font-size:15px; color:var(--text-mid); line-height:1.7; }
+
+/* ZDASR */
+#zdasr { background:var(--navy); padding:96px 60px; position:relative; overflow:hidden; }
+.zdasr-canvas { position:absolute; top:0; left:0; width:100%; height:100%; opacity:0.04; }
+.zdasr-inner { max-width:1100px; margin:0 auto; position:relative; z-index:2; }
+.zdasr-header { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start; margin-bottom:52px; }
+.zdasr-logo { height:36px; width:auto; filter:brightness(0) invert(1); opacity:0.85; display:block; margin-bottom:20px; }
+.zdasr-h2 { font-family:'Playfair Display',serif; font-size:clamp(22px,2.8vw,38px); font-weight:700; color:var(--white); line-height:1.2; }
+.zdasr-sub { font-family:'Cormorant Garamond',serif; font-size:17px; font-weight:300; color:rgba(255,255,255,0.65); line-height:1.7; font-style:italic; margin-top:16px; }
+.zdasr-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:2px; background:rgba(255,255,255,0.06); margin-bottom:28px; }
+.zdasr-card { background:rgba(255,255,255,0.04); padding:28px 20px; border-bottom:2px solid transparent; transition:all 0.3s; opacity:0; transform:translateY(18px); text-align:center; cursor:pointer; }
+.zdasr-card.visible { opacity:1; transform:translateY(0); }
+.zdasr-card:hover { border-bottom-color:rgba(255,255,255,0.4); background:rgba(255,255,255,0.08); }
+.zdasr-code { font-family:'Playfair Display',serif; font-size:24px; font-weight:600; color:var(--white); margin-bottom:6px; }
+.zdasr-subj { font-family:'Josefin Sans',sans-serif; font-size:9px; font-weight:400; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.5); }
+.zdasr-note { font-family:'Cormorant Garamond',serif; font-size:15px; font-style:italic; color:rgba(255,255,255,0.4); text-align:center; margin-bottom:40px; }
+#zdasr-apply { margin-top:0; border:1px solid rgba(255,255,255,0.15); padding:44px; text-align:center; }
+.apply-label { font-family:'Josefin Sans',sans-serif; font-size:9px; font-weight:600; letter-spacing:4px; text-transform:uppercase; color:rgba(255,255,255,0.5); display:block; margin-bottom:16px; }
+.apply-h { font-family:'Playfair Display',serif; font-size:22px; color:var(--white); font-style:italic; margin-bottom:10px; }
+.apply-sub { font-family:'Cormorant Garamond',serif; font-size:15px; color:rgba(255,255,255,0.55); margin-bottom:28px; }
+.apply-btn { display:inline-block; font-family:'Josefin Sans',sans-serif; font-size:9px; font-weight:600; letter-spacing:2px; text-transform:uppercase; padding:13px 36px; background:var(--white); color:var(--navy); text-decoration:none; transition:all 0.3s; }
+.apply-btn:hover { background:var(--off-white); }
+
+/* COLLABORATIONS */
+#collaborations { padding:96px 60px; background:var(--white); }
+.collab-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:2px; background:rgba(10,34,64,0.08); margin-top:52px; }
+.collab-card { background:var(--off-white); padding:40px; border-bottom:2px solid transparent; transition:all 0.3s; opacity:0; transform:translateY(24px); }
+.collab-card.visible { opacity:1; transform:translateY(0); }
+.collab-card:hover { border-bottom-color:var(--navy); background:var(--white); }
+.collab-logo { height:60px; width:auto; max-width:200px; object-fit:contain; margin-bottom:18px; filter:grayscale(20%); transition:filter 0.3s; }
+.collab-card:hover .collab-logo { filter:grayscale(0%); }
+.collab-name { font-family:'Playfair Display',serif; font-size:19px; font-weight:600; color:var(--navy); margin-bottom:10px; }
+.collab-desc { font-family:'Cormorant Garamond',serif; font-size:15px; color:var(--text-mid); line-height:1.7; }
+
+/* PRESS */
+#press { padding:80px 60px; background:var(--off-white); }
+.press-list { margin-top:40px; border-top:1px solid rgba(10,34,64,0.1); }
+.press-item { padding:24px 0; border-bottom:1px solid rgba(10,34,64,0.08); display:flex; align-items:center; gap:32px; opacity:0; transform:translateY(16px); transition:all 0.6s ease; }
+.press-item.visible { opacity:1; transform:translateY(0); }
+.press-pub { font-family:'Josefin Sans',sans-serif; font-size:9px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--navy-mid); width:180px; flex-shrink:0; }
+.press-title { font-family:'Cormorant Garamond',serif; font-size:17px; color:var(--text-dark); }
+
+/* ROADMAP */
+#roadmap { padding:96px 60px; background:var(--white); }
+.roadmap-diagram { margin-top:52px; position:relative; display:flex; justify-content:center; }
+.roadmap-svg { width:100%; max-width:900px; height:500px; }
+
+/* TESTIMONIALS */
+#testimonials { padding:96px 60px; background:var(--off-white); }
+.test-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:2px; background:rgba(10,34,64,0.08); margin-top:52px; }
+.test-card { background:var(--white); padding:36px; border-top:2px solid var(--navy); opacity:0; transform:translateY(20px); transition:all 0.7s ease; }
+.test-card.visible { opacity:1; transform:translateY(0); }
+.test-quote { font-family:'Playfair Display',serif; font-size:17px; font-style:italic; color:var(--text-dark); line-height:1.7; margin-bottom:16px; }
+.test-author { font-family:'Josefin Sans',sans-serif; font-size:9px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--mid-grey); }
+
+/* FOUNDERS */
+#founders { padding:96px 60px; background:var(--white); }
+.founders-header { margin-bottom:52px; }
+.founders-h2 { font-family:'Playfair Display',serif; font-size:clamp(26px,3.5vw,46px); font-weight:700; color:var(--navy); margin-bottom:10px; }
+.founders-sub { font-family:'Cormorant Garamond',serif; font-size:19px; font-style:italic; color:var(--text-mid); }
+.founders-grid { display:grid; grid-template-columns:1fr 1fr; gap:60px; }
+.founder-card { opacity:0; transform:translateY(28px); transition:all 0.8s ease; }
+.founder-card.visible { opacity:1; transform:translateY(0); }
+.founder-photo { width:100%; height:auto; margin-bottom:28px; filter:grayscale(15%); transition:filter 0.4s; }
+.founder-photo:hover { filter:grayscale(0%); }
+.founder-name { font-family:'Playfair Display',serif; font-size:26px; font-weight:600; color:var(--navy); margin-bottom:4px; }
+.founder-title { font-family:'Josefin Sans',sans-serif; font-size:9px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:var(--navy-mid); margin-bottom:16px; padding-bottom:16px; border-bottom:1px solid rgba(10,34,64,0.12); }
+.founder-creds { font-family:'Cormorant Garamond',serif; font-size:15px; color:var(--text-mid); line-height:1.9; margin-bottom:16px; }
+.founder-story { font-family:'Cormorant Garamond',serif; font-size:15px; color:var(--text-mid); line-height:1.8; font-style:italic; margin-bottom:14px; }
+.founder-email { font-family:'Josefin Sans',sans-serif; font-size:9px; letter-spacing:1.5px; color:var(--navy-mid); text-decoration:none; }
+.founder-email:hover { color:var(--navy); }
+
+/* NOTES */
+#founders-note { background:var(--off-white); padding:88px 60px; }
+.note-inner { max-width:720px; margin:0 auto; text-align:center; }
+.note-label { font-family:'Josefin Sans',sans-serif; font-size:9px; font-weight:600; letter-spacing:4px; text-transform:uppercase; color:var(--navy-mid); display:block; margin-bottom:28px; }
+.note-qmark { font-family:'Playfair Display',serif; font-size:100px; color:var(--navy); line-height:0.5; opacity:0.08; display:block; margin-bottom:32px; }
+.note-text { font-family:'Playfair Display',serif; font-size:clamp(18px,2.2vw,26px); font-weight:400; font-style:italic; color:var(--navy); line-height:1.6; margin-bottom:20px; }
+.note-sub { font-family:'Cormorant Garamond',serif; font-size:17px; font-style:italic; color:var(--text-mid); margin-bottom:24px; line-height:1.7; }
+.note-auth { font-family:'Josefin Sans',sans-serif; font-size:10px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--navy); }
+
+#cofounder-note { background:var(--white); padding:80px 60px; border-top:1px solid rgba(10,34,64,0.06); }
+
+#board-note { background:var(--navy); padding:72px 60px; text-align:center; }
+#board-note p { font-family:'Playfair Display',serif; font-size:clamp(17px,2vw,24px); font-weight:400; font-style:italic; color:rgba(255,255,255,0.82); line-height:1.6; max-width:600px; margin:0 auto; }
+
+/* JOIN */
+#join { padding:96px 60px; background:var(--off-white); }
+.join-h2 { font-family:'Playfair Display',serif; font-size:clamp(24px,3vw,42px); font-weight:700; color:var(--navy); margin-bottom:8px; }
+.join-sub { font-family:'Cormorant Garamond',serif; font-size:18px; font-style:italic; color:var(--text-mid); margin-bottom:52px; }
+.join-options { display:grid; grid-template-columns:1fr 1fr; gap:40px; }
+.join-card { padding:44px; background:var(--white); border-top:3px solid var(--navy); transition:all 0.3s; opacity:0; transform:translateY(28px); }
+.join-card.visible { opacity:1; transform:translateY(0); }
+.join-card:hover { border-top-color:var(--navy-mid); }
+.join-card h3 { font-family:'Josefin Sans',sans-serif; font-size:9px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:var(--mid-grey); margin-bottom:14px; }
+.join-card p { font-family:'Cormorant Garamond',serif; font-size:16px; color:var(--text-mid); margin-bottom:22px; line-height:1.6; }
+.join-btn { display:inline-block; font-family:'Josefin Sans',sans-serif; font-size:9px; font-weight:600; letter-spacing:2px; text-transform:uppercase; padding:11px 26px; background:var(--navy); color:var(--white); text-decoration:none; transition:all 0.3s; }
+.join-btn:hover { background:var(--navy-mid); }
+
+/* CONTACT */
+#contact { padding:96px 60px; background:var(--white); border-top:1px solid rgba(10,34,64,0.08); }
+.contact-inner { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:80px; }
+.contact-left h2 { font-family:'Playfair Display',serif; font-size:clamp(22px,2.8vw,38px); font-weight:700; color:var(--navy); margin-bottom:10px; }
+.contact-left p { font-family:'Cormorant Garamond',serif; font-size:17px; font-style:italic; color:var(--text-mid); }
+.contact-items { display:flex; flex-direction:column; gap:28px; }
+.contact-item h4 { font-family:'Josefin Sans',sans-serif; font-size:8px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:var(--navy-mid); margin-bottom:5px; }
+.contact-item a { font-family:'Cormorant Garamond',serif; font-size:16px; color:var(--navy-mid); text-decoration:none; transition:color 0.3s; }
+.contact-item a:hover { color:var(--navy); }
+
+/* SEAL */
+#seal-section { background:var(--off-white); padding:52px 60px; display:flex; justify-content:center; border-top:1px solid rgba(10,34,64,0.08); }
+.seal-img { height:90px; width:auto; opacity:0.5; filter:grayscale(30%); transition:all 0.3s; }
+.seal-img:hover { opacity:0.85; filter:grayscale(0%); }
+
+/* FOOTER */
+footer { background:var(--navy); padding:56px 60px; }
+.footer-main { max-width:1100px; margin:0 auto; display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:36px; padding-bottom:36px; border-bottom:1px solid rgba(255,255,255,0.08); }
+.footer-logo img { height:30px; filter:brightness(0) invert(1); opacity:0.75; }
+.footer-loc { font-family:'Cormorant Garamond',serif; font-size:13px; color:rgba(255,255,255,0.4); font-style:italic; margin-top:8px; }
+.footer-nav { list-style:none; display:flex; flex-direction:column; gap:10px; text-align:right; }
+.footer-nav a { font-family:'Josefin Sans',sans-serif; font-size:9px; font-weight:400; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.5); text-decoration:none; transition:color 0.3s; }
+.footer-nav a:hover { color:var(--white); }
+.footer-bottom { max-width:1100px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; }
+.footer-bottom p { font-family:'Josefin Sans',sans-serif; font-size:8px; font-weight:400; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,0.28); }
+.footer-social a { font-family:'Josefin Sans',sans-serif; font-size:8px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.4); text-decoration:none; transition:color 0.3s; }
+.footer-social a:hover { color:var(--white); }
+
+@media(max-width:900px){
+  nav{padding:0 20px;}
+  .nav-links{display:none;}
+  .hero-content,.who-inner,.col-header,.zdasr-header,.founders-grid,.join-options,.contact-inner{grid-template-columns:1fr;gap:36px;}
+  .impact-grid{grid-template-columns:1fr;}
+  .impact-item{border-right:none;border-bottom:1px solid rgba(10,34,64,0.12);}
+  .div-grid,.collab-grid,.test-grid,.proj-grid{grid-template-columns:1fr;}
+  .zdasr-grid{grid-template-columns:repeat(2,1fr);}
+  .col-grid{grid-template-columns:1fr 1fr;}
+  .footer-main{flex-direction:column;gap:28px;}
+  .footer-nav{text-align:left;}
+  section{padding:60px 20px!important;}
+  #hero{padding-bottom:56px;}
+  .hero-content{padding:0 20px;}
+}
+</style>
+</head>
+<body>
+
+<canvas id="math-canvas" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.025;"></canvas>
+
+<nav id="navbar">
+  <a href="javascript:void(0)" onclick="scrollTo('hero')" class="nav-logo">
+    <img src="https://raw.githubusercontent.com/zetacorporationprivatelimited-gif/Zeta/071b55aedda90b78940a740cf1eb79d851019d10/WhatsApp%20Image%202026-03-16%20at%2019.04.06.jpeg" alt="Zeta Corporation">
+  </a>
+  <ul class="nav-links">
+    <li><a href="javascript:void(0)" onclick="scrollTo('who')">Who We Are</a></li>
+    <li><a href="javascript:void(0)" onclick="scrollTo('divisions')">What We Do</a></li>
+    <li><a href="javascript:void(0)" onclick="scrollTo('collaborations')">Collaborations</a></li>
+    <li><a href="javascript:void(0)" onclick="scrollTo('join')">Join Us</a></li>
+    <li><a href="javascript:void(0)" onclick="scrollTo('invest')">Invest</a></li>
+  </ul>
+</nav>
+
+<section id="hero">
+  <div class="math-symbols" id="mathSymbols"></div>
+  <canvas id="heroCanvas" class="hero-canvas"></canvas>
+  <div class="hero-content">
+    <div class="hero-line"></div>
+    <h1 class="hero-h1">Building the Next<br>Generation of<br>Global Leaders</h1>
+    <p class="hero-sub">Founded in Srinagar. Serving the World.</p>
+    <div class="hero-btns">
+      <a href="javascript:void(0)" onclick="scrollTo('join')" class="btn-p">Join Us</a>
+      <a href="javascript:void(0)" onclick="scrollTo('invest')" class="btn-s">Invest</a>
+    </div>
+  </div>
+</section>
+
+<section id="impact">
+  <div class="impact-inner">
+    <div class="impact-grid">
+      <div class="impact-item">
+        <div class="impact-num" data-target="150" data-suffix="+">0</div>
+        <div class="impact-lbl">Students Guided Globally</div>
+      </div>
+      <div class="impact-item" style="transition-delay:0.15s">
+        <div class="impact-num" data-target="8">0</div>
+        <div class="impact-lbl">Countries Reached</div>
+      </div>
+      <div class="impact-item" style="transition-delay:0.3s">
+        <div class="impact-num" style="font-size:clamp(26px,2.8vw,38px);padding-top:14px;">Srinagar</div>
+        <div class="impact-lbl">Founded in Kashmir, India</div>
+      </div>
+    </div>
+    <div class="impact-network fade-up">
+      <p>"Zeta maintains academic and professional connections with institutions including Harvard, Princeton, and multiple Ivy League universities and hundreds of leading colleges across India and the world."</p>
+      <p class="impact-countries">UK &nbsp;·&nbsp; USA &nbsp;·&nbsp; India &nbsp;·&nbsp; Canada &nbsp;·&nbsp; And Beyond</p>
+    </div>
+  </div>
+</section>
+
+<section id="who">
+  <div class="who-inner" style="max-width:1100px;margin:0 auto;">
+    <div class="fade-left">
+      <span class="section-label">Who We Are</span>
+      <h2 class="who-h2"><em>Geography</em> should never determine destiny.</h2>
+    </div>
+    <div class="fade-up">
+      <div class="who-body">
+        <p>Zeta was founded in one of the world's most contested regions by a student who built everything from nothing. No resources. No pipeline. No map. Just the conviction that potential has no postcode. We exist to close the gap between where our students are and where they deserve to be.</p>
+        <p>Every door we pass through, we prop open behind us.</p>
+      </div>
+      <div class="vm-grid">
+        <div class="vm-card">
+          <h3>Vision</h3>
+          <p>Empower individuals worldwide with self-reliance, skills, and intellectual depth. Preserve cultural identity while competing globally. Skills over credentials, supported by empirical research.</p>
+        </div>
+        <div class="vm-card">
+          <h3>Mission</h3>
+          <p>Skill acquisition, holistic pedagogy, global-local synthesis, societal transformation, and long-term impact over short-term results.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="divisions">
+  <div class="sec-inner">
+    <div class="sec-header fade-up">
+      <span class="section-label">Our Divisions</span>
+      <h2 class="sec-h2">Four Divisions. One Mission.</h2>
+    </div>
+    <div class="div-grid">
+      <div class="div-card">
+        <img src="https://raw.githubusercontent.com/zetacorporationprivatelimited-gif/Zeta/071b55aedda90b78940a740cf1eb79d851019d10/WhatsApp%20Image%202026-03-16%20at%2019.04.05.jpeg" alt="Kashmir Ivy Guide" class="div-logo">
+        <div class="div-name">Kashmir Ivy Guide</div>
+        <div class="div-desc">Elite global admissions and preparation. Bridging the gap between Kashmir's extraordinary students and the world's most competitive institutions.</div>
+      </div>
+      <div class="div-card" style="transition-delay:0.15s">
+        <img src="https://raw.githubusercontent.com/zetacorporationprivatelimited-gif/Zeta/071b55aedda90b78940a740cf1eb79d851019d10/WhatsApp%20Image%202026-03-16%20at%2019.04.05%20(1).jpeg" alt="Kashmir Nexus" class="div-logo">
+        <div class="div-name">Kashmir Nexus</div>
+        <div class="div-desc">Latent potential discovery across disciplines. Identifying and nurturing exceptional minds who have not yet found their path.</div>
+      </div>
+      <div class="div-card" style="transition-delay:0.3s">
+        <img src="https://raw.githubusercontent.com/zetacorporationprivatelimited-gif/Zeta/071b55aedda90b78940a740cf1eb79d851019d10/WhatsApp%20Image%202026-03-16%20at%2019.04.04%20(3).jpeg" alt="Sentinel Order" class="div-logo">
+        <div class="div-name">Sentinel Order</div>
+        <div class="div-desc">Non-profit community service and societal problem-solving. Building the infrastructure of human dignity at every level.</div>
+      </div>
+      <div class="div-card" style="transition-delay:0.45s">
+        <img src="https://raw.githubusercontent.com/zetacorporationprivatelimited-gif/Zeta/071b55aedda90b78940a740cf1eb79d851019d10/WhatsApp%20Image%202026-03-16%20at%2019.04.05%20(2).jpeg" alt="ZDASR" class="div-logo" style="height:28px;">
+        <div class="div-name">ZDASR</div>
+        <div class="div-desc">Zeta Division of Advanced Studies and Research. A globally competitive alternative to AP programs. Equal or higher rigor. Accelerated, research-integrated, and economically accessible.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="college">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="col-header">
+      <div class="fade-left">
+        <span class="section-label">College Guide &amp; Preparation</span>
+        <h2 class="col-h2">We don't just advise.<br><em>We architect futures.</em></h2>
+      </div>
+      <div class="fade-up col-body">
+        <p>From standardized testing to research publication, from career mapping to scholarship navigation — we prepare students for every dimension of global university admissions.</p>
+      </div>
+    </div>
+    <div class="col-grid">
+      <div class="col-item">SAT · ACT · IELTS · TOEFL</div>
+      <div class="col-item" style="transition-delay:0.1s">Major &amp; Non-Major Extracurricular Strategy</div>
+      <div class="col-item" style="transition-delay:0.2s">Research · Olympiads · Competitions</div>
+      <div class="col-item" style="transition-delay:0.3s">Career Mapping</div>
+      <div class="col-item" style="transition-delay:0.4s">Scholarships</div>
+      <div class="col-item" style="transition-delay:0.5s">Tuition Grade 7 Onwards · Rates May Vary</div>
+    </div>
+    <p class="col-contact">For inquiries and applications: <a href="mailto:collegeprepguide112@gmail.com">collegeprepguide112@gmail.com</a></p>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="sec-inner">
+    <div class="sec-header fade-up">
+      <span class="section-label">Projects &amp; Research</span>
+      <h2 class="sec-h2">We don't just prepare students.<br>We build things.</h2>
+    </div>
+    <div class="proj-grid">
+      <div class="proj-card">
+        <div class="proj-name">Humanoid Robotics Initiative</div>
+        <span class="proj-badge">Active</span>
+        <p class="proj-desc">Advancing robotics research and development with a focus on human-centered design and accessible technology.</p>
+      </div>
+      <div class="proj-card" style="transition-delay:0.15s">
+        <div class="proj-name">Zeta AI</div>
+        <span class="proj-badge conf">Confidential · Invite Only</span>
+        <p class="proj-desc">Institutional-grade hedge fund AI system. Details available upon verified request.</p>
+      </div>
+      <div class="proj-card" style="transition-delay:0.3s">
+        <div class="proj-name">Mathematical Application</div>
+        <span class="proj-badge">In Development</span>
+        <p class="proj-desc">Adaptive learning platform with 3D knowledge gap visualization. Bridging the gap between students and mathematics across four difficulty tiers.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="zdasr">
+  <canvas id="zdasrCanvas" class="zdasr-canvas"></canvas>
+  <div class="zdasr-inner">
+    <div class="zdasr-header">
+      <div class="fade-left">
+        <img src="https://raw.githubusercontent.com/zetacorporationprivatelimited-gif/Zeta/071b55aedda90b78940a740cf1eb79d851019d10/WhatsApp%20Image%202026-03-16%20at%2019.04.05%20(2).jpeg" alt="ZDASR" class="zdasr-logo">
+        <h2 class="zdasr-h2">AP exams cost ₹10,000 per subject in India. We built the alternative.</h2>
+      </div>
+      <div class="fade-up">
+        <span class="section-label light">Advanced Studies &amp; Research</span>
+        <p class="zdasr-sub">"Equal or higher rigor. Accelerated. Research-integrated. Economically accessible. Built from Kashmir, for the world."</p>
+      </div>
+    </div>
+    <div class="zdasr-grid">
+      <div class="zdasr-card" onclick="scrollTo('zdasr-apply')">
+        <div class="zdasr-code">Z-PHY</div>
+        <div class="zdasr-subj">Advanced Physics</div>
+      </div>
+      <div class="zdasr-card" style="transition-delay:0.15s" onclick="scrollTo('zdasr-apply')">
+        <div class="zdasr-code">Z-CHEM</div>
+        <div class="zdasr-subj">Advanced Chemistry</div>
+      </div>
+      <div class="zdasr-card" style="transition-delay:0.3s" onclick="scrollTo('zdasr-apply')">
+        <div class="zdasr-code">Z-MATHS</div>
+        <div class="zdasr-subj">Advanced Mathematics</div>
+      </div>
+      <div class="zdasr-card" style="transition-delay:0.45s" onclick="scrollTo('zdasr-apply')">
+        <div class="zdasr-code">Z-ENG</div>
+        <div class="zdasr-subj">Advanced English</div>
+      </div>
+    </div>
+    <p class="zdasr-note">More disciplines coming soon — Philosophy, Psychology, and beyond.</p>
+    <div id="zdasr-apply">
+      <span class="apply-label">Apply for the ZDASR Program</span>
+      <p class="apply-h">Ready to go beyond the syllabus?</p>
+      <p class="apply-sub">Send us an email with your name, subject of interest, and current grade level.</p>
+      <a href="mailto:collegeprepguide112@gmail.com?subject=ZDASR Program Application" class="apply-btn">Apply Now — collegeprepguide112@gmail.com</a>
+    </div>
+  </div>
+</section>
+
+<section id="collaborations">
+  <div class="sec-inner">
+    <div class="sec-header fade-up">
+      <span class="section-label">Our Collaborations</span>
+      <h2 class="sec-h2">Trusted by institutions.<br>Built for students.</h2>
+    </div>
+    <div class="collab-grid">
+      <div class="collab-card">
+        <img src="https://raw.githubusercontent.com/zetacorporationprivatelimited-gif/Zeta/071b55aedda90b78940a740cf1eb79d851019d10/WhatsApp%20Image%202026-03-19%20at%2017.44.08%20(2).jpeg" alt="Toastmasters International" class="collab-logo">
+        <div class="collab-name">Toastmasters International</div>
+        <div class="collab-desc">Official Toastmasters club — members earn their TM designation regardless of age through regular online and in-person meetings focused on communication and leadership development.</div>
+      </div>
+      <div class="collab-card" style="transition-delay:0.15s">
+        <img src="https://raw.githubusercontent.com/zetacorporationprivatelimited-gif/Zeta/071b55aedda90b78940a740cf1eb79d851019d10/WhatsApp%20Image%202026-03-19%20at%2017.44.08.jpeg" alt="Indian Red Cross Society" class="collab-logo">
+        <div class="collab-name">Indian Red Cross Society</div>
+        <div class="collab-desc">Community service gateway — connecting individuals with a humanistic demeanor to meaningful humanitarian outreach opportunities across Kashmir and beyond.</div>
+      </div>
+      <div class="collab-card" style="transition-delay:0.3s">
+        <img src="https://raw.githubusercontent.com/zetacorporationprivatelimited-gif/Zeta/071b55aedda90b78940a740cf1eb79d851019d10/WhatsApp%20Image%202026-03-19%20at%2017.44.08%20(1).jpeg" alt="Sirraya Labs" class="collab-logo">
+        <div class="collab-name">Sirraya Labs</div>
+        <div class="collab-desc">Research and technology collaboration — students gain hands-on lab experience in coding and applied research before they ever reach college.</div>
+      </div>
+      <div class="collab-card" style="transition-delay:0.45s">
+        <img src="https://raw.githubusercontent.com/zetacorporationprivatelimited-gif/Zeta/071b55aedda90b78940a740cf1eb79d851019d10/WhatsApp%20Image%202026-03-19%20at%2017.44.07.jpeg" alt="University of Kashmir" class="collab-logo">
+        <div class="collab-name">University of Kashmir — Mathematics Department</div>
+        <div class="collab-desc">Formal research gateway — students connect with University of Kashmir professors for original research opportunities at the undergraduate and graduate level.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="press">
+  <div class="sec-inner">
+    <div class="fade-up">
+      <span class="section-label">Press &amp; Features</span>
+      <h2 class="sec-h2">Recognized beyond the classroom.</h2>
+    </div>
+    <div class="press-list">
+      <div class="press-item">
+        <div class="press-pub">University of Kashmir</div>
+        <div class="press-title">Medal of Honor awarded to Zuhaib Ahmad — lecture in Mathematics at age 16, 400+ attendees</div>
+      </div>
+      <div class="press-item" style="transition-delay:0.1s">
+        <div class="press-pub">Toastmasters International</div>
+        <div class="press-title">Youngest District Master across Mumbai and Delhi districts</div>
+      </div>
+      <div class="press-item" style="transition-delay:0.2s">
+        <div class="press-pub">World Nuclear Association</div>
+        <div class="press-title">Exhibition Management Certificate — Paris international meeting</div>
+      </div>
+      <div class="press-item" style="transition-delay:0.3s">
+        <div class="press-pub">American Mathematical Monthly</div>
+        <div class="press-title">Original polynomial factorization algorithm submitted for publication — response pending</div>
+      </div>
+      <div class="press-item" style="transition-delay:0.4s">
+        <div class="press-pub">John Locke Institute</div>
+        <div class="press-title">First school in Kashmir valley formally linked to the Institute</div>
+      </div>
+      <div class="press-item" style="transition-delay:0.5s">
+        <div class="press-pub">IPhyC</div>
+        <div class="press-title">International Physics Competition finalist — Hawking area law and black hole thermodynamics</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="roadmap">
+  <div class="sec-inner">
+    <div class="fade-up">
+      <span class="section-label">Where We Are Going</span>
+      <h2 class="sec-h2">The work is not finished.</h2>
+    </div>
+    <div class="roadmap-diagram fade-up">
+      <svg class="roadmap-svg" id="roadmapSvg" viewBox="0 0 900 500">
+        <!-- Center node -->
+        <rect id="centerBox" x="350" y="200" width="200" height="100" rx="12" ry="12" fill="#0A2240" stroke="#0A2240" stroke-width="1"/>
+        <text x="450" y="242" text-anchor="middle" font-family="Josefin Sans,sans-serif" font-size="10" fill="white" letter-spacing="2" font-weight="600">ZETA</text>
+        <text x="450" y="262" text-anchor="middle" font-family="Josefin Sans,sans-serif" font-size="9" fill="rgba(255,255,255,0.6)" letter-spacing="1">CORPORATION</text>
+        <text x="450" y="282" text-anchor="middle" font-family="Josefin Sans,sans-serif" font-size="8" fill="rgba(255,255,255,0.4)" letter-spacing="1">PVT. LTD.</text>
+
+        <!-- Lines -->
+        <line class="rm-line" x1="450" y1="200" x2="450" y2="90" stroke="#0A2240" stroke-width="1" stroke-dasharray="4,3" opacity="0"/>
+        <line class="rm-line" x1="550" y1="220" x2="710" y2="140" stroke="#0A2240" stroke-width="1" stroke-dasharray="4,3" opacity="0"/>
+        <line class="rm-line" x1="550" y1="270" x2="710" y2="360" stroke="#0A2240" stroke-width="1" stroke-dasharray="4,3" opacity="0"/>
+        <line class="rm-line" x1="450" y1="300" x2="450" y2="410" stroke="#0A2240" stroke-width="1" stroke-dasharray="4,3" opacity="0"/>
+        <line class="rm-line" x1="350" y1="270" x2="190" y2="360" stroke="#0A2240" stroke-width="1" stroke-dasharray="4,3" opacity="0"/>
+        <line class="rm-line" x1="350" y1="220" x2="190" y2="140" stroke="#0A2240" stroke-width="1" stroke-dasharray="4,3" opacity="0"/>
+
+        <!-- Nodes -->
+        <rect class="rm-node" x="350" y="30" width="200" height="60" rx="8" ry="8" fill="white" stroke="#0A2240" stroke-width="1" opacity="0"/>
+        <text class="rm-node-text" x="450" y="56" text-anchor="middle" font-family="Playfair Display,serif" font-size="11" fill="#0A2240" opacity="0">Mathematics App</text>
+        <text class="rm-node-text" x="450" y="74" text-anchor="middle" font-family="Josefin Sans,sans-serif" font-size="8" fill="#888" letter-spacing="1" opacity="0">ADAPTIVE LEARNING</text>
+
+        <rect class="rm-node" x="630" y="80" width="200" height="60" rx="8" ry="8" fill="white" stroke="#0A2240" stroke-width="1" opacity="0"/>
+        <text class="rm-node-text" x="730" y="106" text-anchor="middle" font-family="Playfair Display,serif" font-size="11" fill="#0A2240" opacity="0">Quantum Finance</text>
+        <text class="rm-node-text" x="730" y="124" text-anchor="middle" font-family="Josefin Sans,sans-serif" font-size="8" fill="#888" letter-spacing="1" opacity="0">RESEARCH</text>
+
+        <rect class="rm-node" x="630" y="330" width="200" height="60" rx="8" ry="8" fill="white" stroke="#0A2240" stroke-width="1" opacity="0"/>
+        <text class="rm-node-text" x="730" y="356" text-anchor="middle" font-family="Playfair Display,serif" font-size="11" fill="#0A2240" opacity="0">Olympiad Pipeline</text>
+        <text class="rm-node-text" x="730" y="374" text-anchor="middle" font-family="Josefin Sans,sans-serif" font-size="8" fill="#888" letter-spacing="1" opacity="0">IMO · IPHO PREP</text>
+
+        <rect class="rm-node" x="350" y="410" width="200" height="60" rx="8" ry="8" fill="white" stroke="#0A2240" stroke-width="1" opacity="0"/>
+        <text class="rm-node-text" x="450" y="436" text-anchor="middle" font-family="Playfair Display,serif" font-size="11" fill="#0A2240" opacity="0">ZDASR Expansion</text>
+        <text class="rm-node-text" x="450" y="454" text-anchor="middle" font-family="Josefin Sans,sans-serif" font-size="8" fill="#888" letter-spacing="1" opacity="0">PHILOSOPHY · PSYCHOLOGY</text>
+
+        <rect class="rm-node" x="70" y="330" width="200" height="60" rx="8" ry="8" fill="white" stroke="#0A2240" stroke-width="1" opacity="0"/>
+        <text class="rm-node-text" x="170" y="356" text-anchor="middle" font-family="Playfair Display,serif" font-size="11" fill="#0A2240" opacity="0">Global Research</text>
+        <text class="rm-node-text" x="170" y="374" text-anchor="middle" font-family="Josefin Sans,sans-serif" font-size="8" fill="#888" letter-spacing="1" opacity="0">UNIVERSITY NETWORK</text>
+
+        <rect class="rm-node" x="70" y="80" width="200" height="60" rx="8" ry="8" fill="white" stroke="#0A2240" stroke-width="1" opacity="0"/>
+        <text class="rm-node-text" x="170" y="106" text-anchor="middle" font-family="Playfair Display,serif" font-size="11" fill="#0A2240" opacity="0">Talent Aggregation</text>
+        <text class="rm-node-text" x="170" y="124" text-anchor="middle" font-family="Josefin Sans,sans-serif" font-size="8" fill="#888" letter-spacing="1" opacity="0">KASHMIR NETWORK</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section id="testimonials">
+  <div class="sec-inner">
+    <div class="sec-header fade-up">
+      <span class="section-label">What People Say</span>
+      <h2 class="sec-h2">From the people we work with.</h2>
+    </div>
+    <div class="test-grid">
+      <div class="test-card">
+        <p class="test-quote">"When I first heard about Zeta, it was through a junior who told me how much they had helped him. I was a first-year student at Amar Singh College — completely lost, still carrying the weight of scoring poorly in my boards. The team didn't give me generic advice. They identified my specific weaknesses, pinpointed where I excelled, and crafted a personalized plan. For the first time, I stopped measuring myself against others and started measuring myself against my own potential. I secured my first internship, started earning through part-time work, and learned to stop memorizing and actually start thinking. That one decision changed my entire trajectory."</p>
+        <p class="test-author">Saqib · Undergraduate Student · Amar Singh College</p>
+      </div>
+      <div class="test-card" style="transition-delay:0.15s">
+        <p class="test-quote">"When a young student approached me during the Math Fest, asking to deliver a speech, I expected something generic. But the moment he started speaking, I was stunned. He began with a simple question — What is exponentiation? — and from there, navigated through Fourier analysis, connected it to Euler's identity, and arrived at the Riemann Zeta Hypothesis. I have never seen a 10th grader explain complex mathematics with such depth and passion. This was not just a speech. It was the mark of a truly exceptional mind."</p>
+        <p class="test-author">Prof. Khandey · Head of Department, Mathematics · University of Kashmir</p>
+      </div>
+      <div class="test-card" style="transition-delay:0.3s">
+        <p class="test-quote">"When I learned that this student had received a Medal of Honor from the University of Kashmir for his speech, I had to dig deeper. After understanding what he had accomplished — the way he connected advanced mathematical concepts with such clarity — I was genuinely stunned. It is rare to encounter someone so young with this level of depth and originality. This is a talent worth watching."</p>
+        <p class="test-author">Amir Hameed Mir · Founder, Sirraya Labs · Kashmir's Only Frontier AI Research Laboratory</p>
+      </div>
+      <div class="test-card" style="transition-delay:0.45s">
+        <p class="test-quote">"Testimonial coming soon."</p>
+        <p class="test-author">Student · Kashmir</p>
+      </div>
+      <div class="test-card" style="transition-delay:0.6s">
+        <p class="test-quote">"Testimonial coming soon."</p>
+        <p class="test-author">Student · Kashmir</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="founders">
+  <div class="sec-inner">
+    <div class="founders-header fade-up">
+      <span class="section-label">Our Founders</span>
+      <h2 class="founders-h2">Built by those who refused<br>to accept the ceiling.</h2>
+      <p class="founders-sub">"Every door we pass through, we prop open behind us."</p>
+    </div>
+    <div class="founders-grid">
+      <div class="founder-card">
+        <img src="https://raw.githubusercontent.com/zetacorporationprivatelimited-gif/Zeta/071b55aedda90b78940a740cf1eb79d851019d10/WhatsApp%20Image%202026-03-16%20at%2019.04.04.jpeg" alt="Zuhaib Ahmad" class="founder-photo">
+        <div class="founder-name">Zuhaib Ahmad</div>
+        <div class="founder-title">Founder</div>
+        <div class="founder-creds">
+          Mathematics Researcher · Hilbert-Pólya Conjecture<br>
+          ER=EPR Many Worlds Framework<br>
+          Medal of Honor, University of Kashmir<br>
+          Youngest District Master, Toastmasters International<br>
+          IPhyC Finalist · Sirraya Labs Collaborator<br>
+          Founded Zeta Corporation from Srinagar, Kashmir
+        </div>
+        <p class="founder-story">"Zuhaib Ahmad founded Zeta Corporation in 7th grade as a single division education platform. Growing up through conflict, displacement, and hardship in Kashmir, he built everything from nothing on a tablet. Over four years Zeta scaled to four divisions serving 150+ students across eight countries. He is currently working on the Hilbert-Pólya conjecture, an original ER=EPR Many Worlds theoretical physics framework, and an institutional-grade hedge fund AI system."</p>
+        <a href="mailto:zuhaib.zeta@gmail.com" class="founder-email">zuhaib.zeta@gmail.com</a>
+      </div>
+      <div class="founder-card" style="transition-delay:0.2s">
+        <img src="https://raw.githubusercontent.com/zetacorporationprivatelimited-gif/Zeta/071b55aedda90b78940a740cf1eb79d851019d10/WhatsApp%20Image%202026-03-16%20at%2019.04.04%20(1).jpeg" alt="Aneeq Parvaiz" class="founder-photo">
+        <div class="founder-name">Aneeq Parvaiz</div>
+        <div class="founder-title">Co-Founder</div>
+        <div class="founder-creds">
+          Global Change Maker<br>
+          AFS Coordinator, School Level<br>
+          Olympiad Medallist<br>
+          Academic Rigour across Sciences and Mathematics<br>
+          Srinagar, Kashmir, India
+        </div>
+        <p class="founder-story">"I am a driven and forward-thinking individual with a strong focus on growth, innovation, and creating meaningful impact. My journey has been shaped by resilience, continuous learning, and a commitment to excellence. I believe in disciplined work, adaptability, and maintaining a long-term vision — building and contributing in ways that create lasting results."</p>
+        <a href="mailto:aneeqpervaiz.zeta@gmail.com" class="founder-email">aneeqpervaiz.zeta@gmail.com</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="founders-note">
+  <div class="note-inner fade-up">
+    <span class="note-label">Founder's Note</span>
+    <span class="note-qmark">"</span>
+    <p class="note-text">Zeta exists to impose rigor where chaos exists. Standards over scale. Responsibility over noise.</p>
+    <p class="note-sub">"If you are serious about your life, and conscious of what you are doing, this institution is for you."</p>
+    <p class="note-auth">Founder holds final authority after Board deliberation.</p>
+  </div>
+</section>
+
+<section id="cofounder-note">
+  <div class="note-inner fade-up" style="max-width:720px;margin:0 auto;text-align:center;">
+    <span class="note-label">Co-Founder's Note</span>
+    <span class="note-qmark" style="color:var(--navy);opacity:0.06;">"</span>
+    <p class="note-text" style="color:var(--navy);">We are not here to follow paths. We are here to build them — for every student who was told their geography was their ceiling.</p>
+    <p class="note-sub">Aneeq Parvaiz · Co-Founder, Zeta Corporation</p>
+  </div>
+</section>
+
+<section id="board-note">
+  <div class="fade-up">
+    <p>"Zeta does not guarantee admissions or jobs. We maximize probability, not outcomes."</p>
+  </div>
+</section>
+
+<section id="join">
+  <div class="sec-inner">
+    <span class="section-label fade-up">Join Us</span>
+    <h2 class="join-h2 fade-up">Join a Team of Experienced,<br>Mission-Driven Individuals.</h2>
+    <p class="join-sub fade-up">We are always looking for extraordinary people who share our conviction that potential has no postcode.</p>
+    <div class="join-options">
+      <div class="join-card">
+        <h3>As a Student</h3>
+        <p>Gain access to Zeta's global network of mentors, researchers, and professionals committed to your growth.</p>
+        <a href="mailto:studentzeta@gmail.com" class="join-btn">Apply as Student</a>
+      </div>
+      <div class="join-card" style="transition-delay:0.2s">
+        <h3>As a Coordinator</h3>
+        <p>Join our team of mission-driven individuals helping build the infrastructure of opportunity across Kashmir and beyond.</p>
+        <a href="mailto:coordinatorzeta@gmail.com" class="join-btn">Join as Coordinator</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact-inner">
+    <div class="fade-left">
+      <span class="section-label">Contact</span>
+      <h2>Get in Touch</h2>
+      <p>For general inquiries, investment opportunities, or partnership discussions.</p>
+    </div>
+    <div class="contact-items fade-up">
+      <div class="contact-item">
+        <h4>General Inquiries</h4>
+        <a href="mailto:zetateams011@gmail.com">zetateams011@gmail.com</a>
+      </div>
+      <div class="contact-item">
+        <h4>Official Company</h4>
+        <a href="mailto:zetacorporationprivatelimited@gmail.com">zetacorporationprivatelimited@gmail.com</a>
+      </div>
+      <div class="contact-item" id="invest">
+        <h4>Investment Relations</h4>
+        <a href="mailto:investrelationzeta@gmail.com">investrelationzeta@gmail.com</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="seal-section">
+  <img src="https://raw.githubusercontent.com/zetacorporationprivatelimited-gif/Zeta/071b55aedda90b78940a740cf1eb79d851019d10/WhatsApp%20Image%202026-03-16%20at%2019.04.04%20(2).jpeg" alt="Zeta Corporation Corporate Seal" class="seal-img">
+</div>
+
+<footer>
+  <div class="footer-main">
+    <div>
+      <img src="https://raw.githubusercontent.com/zetacorporationprivatelimited-gif/Zeta/071b55aedda90b78940a740cf1eb79d851019d10/WhatsApp%20Image%202026-03-16%20at%2019.04.06.jpeg" alt="Zeta Corporation" class="footer-logo">
+      <p class="footer-loc">Srinagar, Jammu &amp; Kashmir</p>
+    </div>
+    <ul class="footer-nav">
+      <li><a href="javascript:void(0)" onclick="scrollTo('who')">Who We Are</a></li>
+      <li><a href="javascript:void(0)" onclick="scrollTo('divisions')">What We Do</a></li>
+      <li><a href="javascript:void(0)" onclick="scrollTo('collaborations')">Collaborations</a></li>
+      <li><a href="javascript:void(0)" onclick="scrollTo('join')">Join Us</a></li>
+      <li><a href="javascript:void(0)" onclick="scrollTo('invest')">Invest</a></li>
+    </ul>
+  </div>
+  <div class="footer-bottom">
+    <p>© Zeta Corporation Private Limited · All Rights Reserved</p>
+    <div class="footer-social">
+      <a href="https://www.instagram.com" target="_blank">Instagram</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// SMOOTH SCROLL
+function scrollTo(id) {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// NAVBAR
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// MATH SYMBOLS
+const symbols = ['ζ','Σ','∞','∂','∫','π','δ','Δ','Ω','∇','φ','λ','ρ','∈','∀'];
+const mathContainer = document.getElementById('mathSymbols');
+function createSymbol() {
+  const s = document.createElement('span');
+  s.className = 'math-sym';
+  s.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+  s.style.left = Math.random() * 100 + '%';
+  s.style.fontSize = (Math.random() * 36 + 14) + 'px';
+  s.style.animationDuration = (Math.random() * 18 + 12) + 's';
+  s.style.animationDelay = (Math.random() * 4) + 's';
+  mathContainer.appendChild(s);
+  setTimeout(() => s.remove(), 30000);
+}
+for (let i = 0; i < 18; i++) setTimeout(createSymbol, i * 400);
+setInterval(createSymbol, 2200);
+
+// FRACTAL HERO CANVAS
+const hc = document.getElementById('heroCanvas');
+const hctx = hc.getContext('2d');
+function resizeHero() { hc.width = window.innerWidth; hc.height = window.innerHeight; drawFractal(); }
+function drawFractal() {
+  hctx.clearRect(0, 0, hc.width, hc.height);
+  hctx.strokeStyle = 'rgba(255,255,255,1)';
+  hctx.lineWidth = 0.4;
+  function tri(x, y, size, depth) {
+    if (depth === 0 || size < 3) return;
+    hctx.beginPath();
+    hctx.moveTo(x, y - size);
+    hctx.lineTo(x + size * 0.866, y + size * 0.5);
+    hctx.lineTo(x - size * 0.866, y + size * 0.5);
+    hctx.closePath();
+    hctx.stroke();
+    tri(x, y - size / 2, size / 2, depth - 1);
+    tri(x + size * 0.433, y + size * 0.25, size / 2, depth - 1);
+    tri(x - size * 0.433, y + size * 0.25, size / 2, depth - 1);
+  }
+  tri(hc.width * 0.82, hc.height * 0.35, 160, 4);
+  tri(hc.width * 0.08, hc.height * 0.65, 110, 3);
+}
+resizeHero();
+window.addEventListener('resize', resizeHero);
+
+// ZDASR GRID CANVAS
+const zc = document.getElementById('zdasrCanvas');
+const zctx = zc.getContext('2d');
+function resizeZdasr() {
+  zc.width = zc.parentElement.offsetWidth;
+  zc.height = zc.parentElement.offsetHeight;
+  zctx.clearRect(0, 0, zc.width, zc.height);
+  zctx.strokeStyle = 'rgba(255,255,255,1)';
+  zctx.lineWidth = 0.4;
+  for (let x = 0; x < zc.width; x += 40) { zctx.beginPath(); zctx.moveTo(x, 0); zctx.lineTo(x, zc.height); zctx.stroke(); }
+  for (let y = 0; y < zc.height; y += 40) { zctx.beginPath(); zctx.moveTo(0, y); zctx.lineTo(zc.width, y); zctx.stroke(); }
+}
+window.addEventListener('load', resizeZdasr);
+window.addEventListener('resize', resizeZdasr);
+
+// MAIN CANVAS FRACTAL BG
+const mc = document.getElementById('math-canvas');
+const mctx = mc.getContext('2d');
+function resizeMain() {
+  mc.width = window.innerWidth;
+  mc.height = window.innerHeight;
+  mctx.clearRect(0, 0, mc.width, mc.height);
+  mctx.strokeStyle = 'rgba(10,34,64,1)';
+  mctx.lineWidth = 0.3;
+  function tri2(x, y, size, depth) {
+    if (depth === 0 || size < 4) return;
+    mctx.beginPath();
+    mctx.moveTo(x, y - size);
+    mctx.lineTo(x + size * 0.866, y + size * 0.5);
+    mctx.lineTo(x - size * 0.866, y + size * 0.5);
+    mctx.closePath();
+    mctx.stroke();
+    tri2(x, y - size / 2, size / 2, depth - 1);
+    tri2(x + size * 0.433, y + size * 0.25, size / 2, depth - 1);
+    tri2(x - size * 0.433, y + size * 0.25, size / 2, depth - 1);
+  }
+  tri2(mc.width * 0.9, mc.height * 0.2, 120, 3);
+}
+resizeMain();
+window.addEventListener('resize', resizeMain);
+
+// SCROLL ANIMATIONS
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade-up,.fade-left,.impact-item,.div-card,.col-item,.proj-card,.zdasr-card,.collab-card,.press-item,.test-card,.founder-card,.join-card').forEach(el => observer.observe(el));
+
+// COUNTER
+function animateCounter(el, target, suffix = '') {
+  let cur = 0; const step = target / 55;
+  const t = setInterval(() => {
+    cur += step;
+    if (cur >= target) { cur = target; clearInterval(t); }
+    el.textContent = Math.floor(cur) + suffix;
+  }, 22);
+}
+const cObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('[data-target]').forEach(el => {
+        animateCounter(el, parseInt(el.dataset.target), el.dataset.suffix || '');
+      });
+      cObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.3 });
+const impactSec = document.getElementById('impact');
+if (impactSec) cObs.observe(impactSec);
+
+// ROADMAP ANIMATION
+const rmObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const lines = document.querySelectorAll('.rm-line');
+      const nodes = document.querySelectorAll('.rm-node');
+      const nodeTexts = document.querySelectorAll('.rm-node-text');
+      lines.forEach((l, i) => {
+        setTimeout(() => { l.style.transition = 'opacity 0.5s ease'; l.style.opacity = '0.4'; }, i * 120);
+      });
+      nodes.forEach((n, i) => {
+        setTimeout(() => { n.style.transition = 'opacity 0.5s ease'; n.style.opacity = '1'; }, 800 + i * 100);
+      });
+      nodeTexts.forEach((t, i) => {
+        setTimeout(() => { t.style.transition = 'opacity 0.5s ease'; t.style.opacity = '1'; }, 1000 + i * 80);
+      });
+      rmObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.3 });
+const roadmapSec = document.getElementById('roadmap');
+if (roadmapSec) rmObs.observe(roadmapSec);
+</script>
+</body>
+</html>
